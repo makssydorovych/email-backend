@@ -18,6 +18,7 @@
     { "src": "./index.js", "use": "@vercel/node" }
   ],
   "routes": [
+    { "src": "/sendMessage", "dest": "./index.js" },
     { "src": "/(.*)", "dest": "./index.js" }
   ]
 
