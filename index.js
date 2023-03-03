@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -10,11 +10,13 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+const login = process.env.LOGIN || 'maksymsydorovych@gmail.com';
+const password = process.env.LOGIN || 'Pomaranch1+';
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'maksymsydorovych@gmail.com',
-        pass: 'Pomaranch1+',
+        user: login,
+        pass: password,
     },
 });
 
@@ -23,7 +25,7 @@ app.post('/sendMessage', async function (req, res) {
 
     const info = await transporter.sendMail({
         from: 'My profile page', // sender address
-        to: 'maksymsydorovych@gmail.com', // list of receivers
+        to: login, // list of receivers
         subject: 'HR WANTS ME', // Subject line
         html: `<b>Message from portfolio</b>
     <div>
