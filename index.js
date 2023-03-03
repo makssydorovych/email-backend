@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const login = process.env.LOGIN || 'maksymsydorovych@gmail.com';
-const password = process.env.LOGIN || 'Pomaranch1+';
+const password = process.env.PASSWORD || 'Pomaranch1+';
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -19,6 +19,12 @@ const transporter = nodemailer.createTransport({
         pass: password,
     },
 });
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.get('/', function(req, res){
     res.send('Hello world')
 })
@@ -42,12 +48,7 @@ app.post('/sendMessage', async function (req, res) {
 
     res.send(req.body);
 });
-const corsOptions = {
-    origin: 'http://localhost:3000/portfolio?',
-    methods: ['GET', 'PUT', 'POST', 'DELETE'],
-    optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
+
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
