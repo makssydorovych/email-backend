@@ -19,14 +19,15 @@ const transporter = nodemailer.createTransport({
         pass: password,
     },
 });
-
+app.get('/', function(req, res){
+    res.send('Hello world')
+})
 app.post('/sendMessage', async function (req, res) {
     const { name, email, message } = req.body;
-
     const info = await transporter.sendMail({
-        from: 'My profile page', // sender address
-        to: login, // list of receivers
-        subject: 'HR WANTS ME', // Subject line
+        from: 'My profile page',
+        to: login,
+        subject: 'HR WANTS ME',
         html: `<b>Message from portfolio</b>
     <div>
       name: ${name}
