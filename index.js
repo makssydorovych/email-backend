@@ -5,8 +5,12 @@ import bodyParser from 'body-parser';
 
 const app = express();
 const port = process.env.PORT || 5000;
-
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -19,12 +23,7 @@ const transporter = nodemailer.createTransport({
         pass: password,
     },
 });
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'PUT', 'POST', 'DELETE'],
-    optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
+
 app.get('/', function(req, res){
     res.send('Hello world')
 })
