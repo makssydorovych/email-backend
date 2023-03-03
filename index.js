@@ -43,7 +43,7 @@ app.post('/sendMessage', async function (req, res) {
     res.send(req.body);
 });
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000/portfolio?',
     methods: ['GET', 'PUT', 'POST', 'DELETE'],
     optionsSuccessStatus: 200
 };
