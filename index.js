@@ -42,6 +42,12 @@ app.post('/sendMessage', async function (req, res) {
 
     res.send(req.body);
 });
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
