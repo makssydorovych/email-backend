@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 app.use(cors());
-app.get('/', function(req, res){
+app.get('/hello', function(req, res){
 
     res.send('Hello world')
 })
