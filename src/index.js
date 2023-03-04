@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 5001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -17,9 +18,8 @@ const transporter = nodemailer.createTransport({
         pass: password,
     },
 });
-app.use(cors());
-app.get('/hello', function(req, res){
 
+app.get('/', function(req, res){
     res.send('Hello world')
 })
 
