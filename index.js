@@ -1,27 +1,15 @@
-// import express from 'express';
-// import nodemailer from 'nodemailer';
-// import cors from 'cors';
-// import bodyParser from 'body-parser';
-
 const express = require('express')
 const nodemailer = require('nodemailer')
-const cors = require('cors')
 const bodyParser = require('body-parser')
-
+const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 5000;
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'PUT', 'POST', 'DELETE'],
-    optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
+const port = process.env.PORT || 5001;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const login = process.env.LOGIN || 'maksymsydorovych@gmail.com';
-const password = process.env.PASSWORD || 'Pomaranch1+';
+const password = process.env.PASSWORD || 'xhkbfmlcphjddddf';
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -29,11 +17,12 @@ const transporter = nodemailer.createTransport({
         pass: password,
     },
 });
-
+app.use(cors());
 app.get('/', function(req, res){
-    res.send('Hello world')
+    let message = "Hello "
+    res.send(message)
 })
-app.options('/sendMessage', cors(corsOptions));
+app.options('/sendMessage', cors());
 app.post('/sendMessage', async function (req, res) {
     const { name, email, message } = req.body;
     const info = await transporter.sendMail({
@@ -50,9 +39,11 @@ app.post('/sendMessage', async function (req, res) {
     <div>
       message: ${message}
     </div>`,
-    });
 
-    res.send(req.body);
+    });
+    console.log(res)
+    console.log("Message sent: %s", info.messageId);
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 });
 
 
