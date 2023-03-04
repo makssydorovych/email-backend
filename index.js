@@ -1,7 +1,13 @@
-import express from 'express';
-import nodemailer from 'nodemailer';
-import cors from 'cors';
-import bodyParser from 'body-parser';
+// import express from 'express';
+// import nodemailer from 'nodemailer';
+// import cors from 'cors';
+// import bodyParser from 'body-parser';
+
+const express = require('express')
+const nodemailer = require('nodemailer')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+
 
 const app = express();
 const port = process.env.PORT || 5000;
