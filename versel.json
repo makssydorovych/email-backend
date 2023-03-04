@@ -2,11 +2,11 @@
   "version": 2,
   "name": "express-email-versel",
   "builds": [
-    { "src": "./index.js", "use": "@vercel/node" }
+    { "src": "index.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/sendMessage", "dest": "./index.js" },
-    { "src": "/(.*)", "dest": "./index.js" }
+    { "src": "/sendMessage", "dest": "index.js" },
+    { "src": "/(.*)", "dest": "index.js" }
   ]
 
 }
