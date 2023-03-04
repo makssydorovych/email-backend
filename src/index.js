@@ -19,10 +19,10 @@ const transporter = nodemailer.createTransport({
 });
 app.use(cors());
 app.get('/', function(req, res){
-    let message = "Hello "
-    res.send(message)
+
+    res.send('Hello world')
 })
-app.options('/sendMessage', cors());
+
 app.post('/sendMessage', async function (req, res) {
     const { name, email, message } = req.body;
     const info = await transporter.sendMail({
