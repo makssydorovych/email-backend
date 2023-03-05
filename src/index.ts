@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+// import cors from 'cors';
 const { Router }= require('express');
 
 const app = express();
