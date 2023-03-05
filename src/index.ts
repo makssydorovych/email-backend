@@ -2,14 +2,14 @@ import express, { Request, Response } from 'express'
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// import cors from 'cors';
-const { Router }= require('express');
+
+// const { Router }= require('express');
 
 const app = express();
 app.use(cors());
 const port = process.env.PORT || 5001;
-const parserMiddleware = express.json()
-app.use(parserMiddleware)
+// const parserMiddleware = express.json()
+// app.use(parserMiddleware)
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -22,12 +22,12 @@ const transporter = nodemailer.createTransport({
         pass: password,
     },
 });
-const router = Router({})
-router.get('/', function(req: Request, res: Response){
-    res.send('Hello world!')
+// const router = Router({})
+app.get('/', (req: Request, res: Response) => {
+    res.send('Hello Samurai')
 })
 
-router.post('/sendMessage', async function (req: Request, res: Response) {
+app.post('/sendMessage', async function (req: Request, res: Response) {
     const { name, email, message } = req.body;
     const info = await transporter.sendMail({
         from: 'My profile page',
